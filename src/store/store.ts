@@ -1,11 +1,11 @@
-import { applyMiddleware, legacy_createStore as createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import reducers from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
+import { type } from "os";
+import postSlice from "../feature/posts/postSlice";
 
-export const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+  reducer: postSlice,
+});
 
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export default store;
